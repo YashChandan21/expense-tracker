@@ -1,8 +1,16 @@
-import React from 'react'
+import Guest from "@/components/Guest";
+import { currentUser } from "@clerk/nextjs/server"
 
-export default function page() {
+export default async function page() {
+
+  const user = await currentUser();
+
+  if(!user){
+    return <Guest />
+  }
+
   return (
-    <div>
+    <div className="text-red-400 dark:text-red-300">
       Homepage
     </div>
   )
